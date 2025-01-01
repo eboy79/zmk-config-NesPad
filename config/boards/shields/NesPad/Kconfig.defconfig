@@ -3,19 +3,5 @@ if SHIELD_NANONES
 config ZMK_KEYBOARD_NAME
     default "NanoNes"
 
-config USB_DEVICE_PRODUCT
-    default "NanoNes"
-
-config USB_DEVICE_MANUFACTURER
-    default "ZMK Project"
-
-config ZMK_RGB_UNDERGLOW
-    bool "Enable RGB Underglow"
-    default y
-
-config ZMK_STUDIO
-    bool "Enable ZMK Studio Support"
-    default y
-
 endif
 
