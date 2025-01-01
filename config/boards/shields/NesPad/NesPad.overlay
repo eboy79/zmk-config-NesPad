@@ -1,0 +1,54 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <physical_layouts.dtsi>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+
+        input-gpios = <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+                      <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+                      <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+                      <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+                      <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+                      <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+                      <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+                      <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>,
+                      <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
+    };
+
+    default_transform: default_transform {
+        compatible = "zmk,matrix-transform";
+        rows = <3>;
+        columns = <3>;
+        map = <  0 1 2  // Row 0 mapping
+                 3 4 5  // Row 1 mapping
+                 6 7 8  // Row 2 mapping
+              >;
+    };
+
+    nes_physical_layout: nes_physical_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "NES Controller";
+        transform = <&default_transform>;
+        kscan = <&kscan0>;
+        keys  //                     w   h    x    y     rot    rx    ry
+            // D-pad (Up, Down, Left, Right)
+            = <&key_physical_attrs  50  50   50    0       0     0     0>  // Up
+            , <&key_physical_attrs  50  50   50  100       0     0     0>  // Down
+            , <&key_physical_attrs  50  50    0   50       0     0     0>  // Left
+            , <&key_physical_attrs  50  50  100   50       0     0     0>  // Right
+            // Start/Select
+            , <&key_physical_attrs  50  50  200   50       0     0     0>  // Select
+            , <&key_physical_attrs  50  50  250   50       0     0     0>  // Start
+            // Action Buttons (B and A)
+            , <&key_physical_attrs  50  50  300   50       0     0     0>  // B
+            , <&key_physical_attrs  50  50  350   50       0     0     0>  // A
+            ;
+    };
+};
