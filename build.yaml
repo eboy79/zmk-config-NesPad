@@ -1,6 +1,9 @@
 name: ZMK Build and Flash
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -19,7 +22,6 @@ jobs:
 
       - name: Set up ZMK environment
         run: |
-          # Set environment variables for the GitHub Actions environment
           echo "ZMK_CONFIG_DIR=/Users/mnrdsgn/keebra/zmk-config-NesPad" >> $GITHUB_ENV
           echo "ZMK_EXTRA_MODULES=/Users/mnrdsgn/keebra/zmk-config-NesPad" >> $GITHUB_ENV
 
