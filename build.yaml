@@ -1,4 +1,4 @@
-name: ZMK Build and Flash
+name: Build ZMK Firmware
 
 on:
   push:
@@ -10,33 +10,24 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # or macos-latest, depending on the platform
     strategy:
       matrix:
         board: ["nice_nano_v2"]
         shield: ["NesPad"]
-    
     steps:
-      - name: Checkout ZMK repository
+      - name: Checkout the code
         uses: actions/checkout@v2
 
-      - name: Set up ZMK environment
+      - name: Set up Zephyr environment
         run: |
-          echo "ZMK_CONFIG_DIR=/Users/mnrdsgn/keebra/zmk-config-NesPad" >> $GITHUB_ENV
-          echo "ZMK_EXTRA_MODULES=/Users/mnrdsgn/keebra/zmk-config-NesPad" >> $GITHUB_ENV
+          # Commands to set up Zephyr and dependencies
 
-      - name: Run ZMK build
+      - name: Build ZMK firmware
         run: |
-          rm -rf build/nespad_studio
-          west build -d build/nespad_studio -b nice_nano_v2 \
+          west build -d build/nespad_studio -b ${{ matrix.board }} \
             -S studio-rpc-usb-uart -S zmk-usb-logging -- \
             -DSHIELD=${{ matrix.shield }} \
-            -DZMK_CONFIG="${{ env.ZMK_CONFIG_DIR }}/config" \
-            -DZMK_EXTRA_MODULES="${{ env.ZMK_EXTRA_MODULES }}" \
+            -DZMK_CONFIG="/Users/mnrdsgn/keebra/zmk-config-NesPad/config" \
+            -DZMK_EXTRA_MODULES="/Users/mnrdsgn/keebra/zmk-config-NesPad" \
             -DCONFIG_ZMK_STUDIO=y
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: zmk-build
-          path: build/nespad_studio
