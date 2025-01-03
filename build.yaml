@@ -1,30 +1,40 @@
-# This file generates the GitHub Actions matrix.
-# For simple board + shield combinations, add them to the top level board and
-# shield arrays, for more control, add individual board + shield combinations
-# to the `include` property. You can also use the `cmake-args` property to
-# pass flags to the build command, `snippet` to add a Zephyr snippet, and
-# `artifact-name` to assign a name to distinguish build outputs from each other:
-#
-# board: [ "nice_nano_v2" ]
-# shield: [ "corne_left", "corne_right" ]
-# include:
-#   - board: bdn9_rev2
-#   - board: nice_nano_v2
-#     shield: reviung41
-#   - board: nice_nano_v2
-#     shield: corne_left
-#     snippet: studio-rpc-usb-uart
-#     cmake-args: -DCONFIG_ZMK_STUDIO=y
-#     artifact-name: corne_left_with_studio
-#
----
-include:
-  - board: nice_nano_v2
-    shield: NesPad
-    snippet: studio-rpc-usb-uart
-    snippet: zmk-usb-logging
-    cmake-args:
-      - -DSHIELD=NesPad
-      - -DZMK_CONFIG="${ZMK_CONFIG_DIR}/config"
-      - -DZMK_EXTRA_MODULES="${ZMK_EXTRA_MODULES}"
-      - -DCONFIG_ZMK_STUDIO=y
+name: ZMK Build and Flash
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        board: ["nice_nano_v2"]
+        shield: ["NesPad"]
+
+    steps:
+      - name: Checkout ZMK repository
+        uses: actions/checkout@v2
+
+      - name: Set up ZMK environment
+        run: |
+          # Set environment variables for the GitHub Actions environment
+          echo "ZMK_CONFIG_DIR=/Users/mnrdsgn/keebra/zmk-config-NesPad" >> $GITHUB_ENV
+          echo "ZMK_EXTRA_MODULES=/Users/mnrdsgn/keebra/zmk-config-NesPad" >> $GITHUB_ENV
+
+      - name: Run ZMK build
+        run: |
+          rm -rf build/nespad_studio
+          west build -d build/nespad_studio -b nice_nano_v2 \
+            -S studio-rpc-usb-uart -S zmk-usb-logging -- \
+            -DSHIELD=${{ matrix.shield }} \
+            -DZMK_CONFIG="${{ env.ZMK_CONFIG_DIR }}/config" \
+            -DZMK_EXTRA_MODULES="${{ env.ZMK_EXTRA_MODULES }}" \
+            -DCONFIG_ZMK_STUDIO=y
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: zmk-build
+          path: build/nespad_studio
