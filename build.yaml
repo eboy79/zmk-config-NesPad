@@ -23,4 +23,8 @@ include:
     shield: NesPad
     snippet: studio-rpc-usb-uart
     snippet: zmk-usb-logging
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    cmake-args:
+      - -DSHIELD=NesPad
+      - -DZMK_CONFIG="${ZMK_CONFIG_DIR}/config"
+      - -DZMK_EXTRA_MODULES="${ZMK_EXTRA_MODULES}"
+      - -DCONFIG_ZMK_STUDIO=y
