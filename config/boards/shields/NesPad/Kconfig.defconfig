@@ -1,10 +1,10 @@
-if SHIELD_NANONES
+if SHIELD_NESPAD
 
 config ZMK_KEYBOARD_NAME
-    default "NanoNes"
+    default "NesPad"
 
 config USB_DEVICE_PRODUCT
-    default "NanoNes"
+    default "NesPad"
 
 config USB_DEVICE_VID
     default 0x1D50
