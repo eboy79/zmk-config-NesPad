@@ -1,3 +1,13 @@
+
+//               NesPad Configuration    
+//              
+// ███╗   ██╗ ██████╗ ██████╗  ██████╗  █████╗ ██████╗ 
+// ████╗  ██║██╔════╝██╔════╝ ██╔═══██╗██╔══██╗██╔══██╗
+// ██╔██╗ ██║█████╗   █████╗  ██████╔╝ ███████║██║  ██║
+// ██║╚██╗██║██╔══╝   ╚═══██╗ ██╔═══╝  ██╔══██║██║  ██║
+// ██║ ╚████║███████╗██████╔╝ ██║      ██║  ██║██████╔╝
+// ╚═╝  ╚═══╝╚══════╝╚═════╝  ╚═╝      ╚═╝  ╚═╝╚═════╝  
+// 
 name: Build ZMK Firmware
 
 on:
@@ -15,6 +25,9 @@ jobs:
       matrix:
         board: ["nice_nano_v2"]
         shield: ["NesPad"]
+        xtra_modules: ["nicehatharry", "nice_view"]
+
+        
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
@@ -25,9 +38,9 @@ jobs:
 
       - name: Build ZMK firmware
         run: |
-          west build -d build/nespad_studio -b ${{ matrix.board }} \
-            -S studio-rpc-usb-uart -S zmk-usb-logging -- \
-            -DSHIELD=${{ matrix.shield }} \
-            -DZMK_CONFIG="/Users/mnrdsgn/keebra/zmk-config-NesPad/config" \
-            -DZMK_EXTRA_MODULES="/Users/mnrdsgn/keebra/zmk-config-NesPad" \
-            -DCONFIG_ZMK_STUDIO=y
+  west build -d build/nespad_studio -b nice_nano_v2 \
+  -S studio-rpc-usb-uart -S zmk-usb-logging -- \
+  -DSHIELD="NesPad nicehatharry nice_view" \
+  -DZMK_CONFIG="/Users/mnrdsgn/keebra/zmk-config-NesPad/config" \
+  -DZMK_EXTRA_MODULES="/Users/mnrdsgn/keebra/zmk-config-NesPad" \
+  -DCONFIG_ZMK_STUDIO=y

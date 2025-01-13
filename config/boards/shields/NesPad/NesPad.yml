@@ -7,7 +7,4 @@ requires: [nice_nano_v2]
 exposes: [ws2812]
 features:
   - underglow
-  - studio
-outputs:
-  - usb
-  - ble
+
