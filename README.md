@@ -1,4 +1,4 @@
-# NesPad: The Retro Macropad
+#NesPad
 
 ---
 ```
