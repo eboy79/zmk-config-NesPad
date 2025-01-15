@@ -13,7 +13,7 @@
 // ██║ ╚████║███████╗██████╔╝ ██║      ██║  ██║██████╔╝
 // ╚═╝  ╚═══╝╚══════╝╚═════╝  ╚═╝      ╚═╝  ╚═╝╚═════╝
 // 
-//       -- Up+Cycled Nintendo Clone E_Waste **
+//       -- Key Chain Sized Programmable Macropad **
 ```
 ---
 ![NesPad LED Animation](assets/led-fade-loop.gif)
