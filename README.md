@@ -10,9 +10,8 @@
 // 
 //       -- Up+Cycled Nintendo Clone E_Waste **
 ```
-![NesPad LED Animation](assets/led-fade-loop.gif)
-
 ---
+![NesPad LED Animation](assets/led-fade-loop.gif)
 
 ### 🎨 **Vision**
 - **8% macropad** inspired by the NES controller layout, upgraded for modern workflows and gaming.
