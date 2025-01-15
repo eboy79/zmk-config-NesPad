@@ -1,4 +1,4 @@
-# NesPad: UpCycled 5Below Nintendo Clone
+# NesPad: Nano
 
 
 
