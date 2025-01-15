@@ -1,6 +1,5 @@
 # NesPad: The Retro Macropad
 
-*An 8% macropad inspired by the NES controller layout, upgraded for modern workflows and gaming, say's chatGPT.*
 ---
 ```
 //               NesPad Configuration    
