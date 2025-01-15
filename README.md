@@ -10,6 +10,8 @@
 // 
 //       -- Up+Cycled Nintendo Clone E_Waste **
 ```
+![NesPad LED Animation](assets/led-fade-loop.gif)
+
 ---
 
 ### 🎨 **Vision**
