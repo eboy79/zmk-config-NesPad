@@ -1,4 +1,4 @@
-# NesPad: Nano
+# NesPad: Nano V1.0
 
 
 
