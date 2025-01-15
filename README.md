@@ -73,6 +73,10 @@
 ---
 
 Be part of the future of retro-inspired innovation. 🚀
+---
+
+
+
 ![GitHub last commit](https://img.shields.io/github/last-commit/eboy79/zmk-config-NesPad)
 ![GitHub issues](https://img.shields.io/github/issues/eboy79/zmk-config-NesPad)
 ![License](https://img.shields.io/github/license/eboy79/zmk-config-NesPad)
