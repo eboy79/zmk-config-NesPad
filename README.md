@@ -1,7 +1,5 @@
 # NesPad:Nano V1.0
-
-
-
+![NesPad LED Animation](assets/led-fade-loop.gif)
 
 ```
 //                  
@@ -16,8 +14,6 @@
 //       -- Key Chain Sized Programmable Macropad **
 ```
 ---
-![NesPad LED Animation](assets/led-fade-loop.gif)
-
 ### 🎨 **Vision**
 - **8% macropad** inspired by the NES controller layout, upgraded for modern workflows and gaming.
 - Powered by **ZMK firmware** for wireless Bluetooth functionality.
