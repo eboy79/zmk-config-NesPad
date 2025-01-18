@@ -1,4 +1,4 @@
-# NesPad:Nano V1.0
+# NesPad:Nano_v1.0
 ![NesPad LED Animation](assets/led-fade-loop.gif)
 
 ```
